@@ -1,3 +1,6 @@
+%Group members: Chen Penghao, Wang Zexin
+%Group number: G01
+
 function [optionValue] = explicitIIIFDMAmericanCall(S0, X, r, T, q, sigma, N, ds)
 
     Smax = 4 * X;

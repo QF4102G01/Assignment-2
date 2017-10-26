@@ -1,3 +1,6 @@
+%Group members: Chen Penghao, Wang Zexin
+%Group number: G01
+
 function [optionValue] = FSGMAmericanFixedStrikeLookbackPut(runningTime, tau, S0, sigma, q, runningMin, r, K, N)
 
     deltaT = tau / N;
@@ -18,22 +21,22 @@ function [optionValue] = FSGMAmericanFixedStrikeLookbackPut(runningTime, tau, S0
     end
     
     for n = N-1 : -1 : 0
-            newV = zeros(N+1, 2 * N + 1);
-            aS = zeros(N+1, 2 * N + 1);
-            for j = 0 : n
-                for k = -n : n
-                    S = S0 * exp((2 * j - n) * deltaX);
-                    A = S0 * exp(k * deltaX);
+        newV = zeros(N+1, 2 * N + 1);
+        aS = zeros(N+1, 2 * N + 1);
+        for j = 0 : n
+            for k = -n : n
+                S = S0 * exp((2 * j - n) * deltaX);
+                A = S0 * exp(k * deltaX);
 
-                    aS(j+jshift, k+kshift) = S;
+                aS(j+jshift, k+kshift) = S;
 
-                    ku = k;
-                    kd = min(k, 2 * j - n);
-                    Vu = v(j+1+jshift, ku+kshift);
-                    Vd = v(j+jshift, kd+kshift);
-                    newV(j+jshift, k+kshift) = max(exp(-r * deltaT) * (p * Vu + (1-p) * Vd), K - A);
-                end
+                ku = k;
+                kd = min(k, 2 * j - n);
+                Vu = v(j+1+jshift, ku+kshift);
+                Vd = v(j+jshift, kd+kshift);
+                newV(j+jshift, k+kshift) = max(exp(-r * deltaT) * (p * Vu + (1-p) * Vd), K - A);
             end
+        end
         v = newV;
         aS;
     end

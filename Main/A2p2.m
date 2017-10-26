@@ -1,3 +1,5 @@
+%Group members: Chen Penghao, Wang Zexin
+%Group number: G01
 
 explicitIIIFDM(9.8, 9, 0.001, 0.25, 0.01, 0.15, 25, 0.05)
 
