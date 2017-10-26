@@ -65,34 +65,32 @@
 
 \section{Forward Grid Shooting Method on American floating-strike arithmetic-average call}
 \subsection*{\emph{Statement of the problem}}
+Write a MatLab function to calculate the American fixed-strike arithmetic-average put option value using Forward Shooting Grid Method with linear interpolation.
 
+The American fixed-strike arithmetic-average put option is initiated 0.25 year ago, and has 0.25 year more to expiry. The underlier price is currently $\$100$, volatility $40%$ and dividend yield 0.01 with a running average of $\$95$, which was taken over the earlier 0.25 year since launched. The risk-free rate $r_f$ is $0.1$ and strike price $K=
+\$100$.
+
+Compute the option value with $\rho=1$, $\rho=\dfrac{1}{2}$ and $\rho = \dfrac{1}{5}$. For each $\rho$, the number of periods in the lattice is required to be 50, 100, 200 and 400. Compare the computed results and the computation times taken.
+
+Next, an American fixed-strike lookback put option is concerned, initiated 0.25 year ago, and still having 0.25 year to expiry. The current underlier price $S_{0.25}=\$1$, volatility $\sigma=40\%$ and dividend yield $q = 0.01$. The running minimum is at $\$0.97$ which was taken over the earlier period of 0.25 year. The risk-free rate $r_f=0.1$ and strike $K=\$0.95$.
+
+Compute the function for number of time periods $N = 50$ to $N = 500$ with increments of 50, and comment on the numerical results and computation time taken. Lastly, re-run the algorithm with running minimum changed from $\$0.97$ to $\$0.57$.
 
 \subsection{Description of work done}
 
-\newpage
+\subsection{Comment on the numerical results and computation times taken for different $\rho$ and $N$ values}
 
-\newpage
+\subsection{Comment on the numerical results and computation times taken for different $N$ values}
 
-\subsection{Comments on plot of option prices against current underlier price}
-
-\newpage
-
-\subsection{Comments on plot of computation errors using BTM against theoretical values}
-
-\subsection{Values of $N$ that minimizes the errors}
-
-\newpage
+\subsection{Comment on the numerical results obtained from lower running minimum value}
 
 \section{Explicit Difference Scheme III for vanilla call option}
-\subsection*{Statement of the problem}
+\subsection*{\emph{Statement of the problem}}
+Write a MatLab function to implement the explicit difference scheme III for pricing European vanilla calls. Test the algorithm out with a European vanilla call option with strike $K = \$9$, time to maturity $0.25$ year, current underlier price $S = \$9.8$, volatility $\sigma=0.15$. The dividend yield $q = 1\%$ and risk-free rate is $0.1\%$.
 
 \subsection{Newly issued European floating strike lookback put options}
 
-\newpage
-
 \subsection{Previously issued European floating strike lookback put options}
-
-\newpage
 
 \subsection{Analyze, compare and comment on the results}
 
