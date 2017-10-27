@@ -77,8 +77,28 @@ Next, an American fixed-strike lookback put option is concerned, initiated 0.25 
 Compute the function for number of time periods $N = 50$ to $N = 500$ with increments of 50, and comment on the numerical results and computation time taken. Lastly, re-run the algorithm with running minimum changed from $\$0.97$ to $\$0.57$.
 
 \subsection{Description of work done}
+First we implemented the FSGM for American fixed-strike arithmetic-average put option.
+
+\begin{algorithm}[H]
+	\KwData{runningTime, $\tau$, $S_0$, $\sigma$, $q$, $A$, $r$, $K$, $N$, $\rho$}
+	\KwResult{$P_{FSGM}$, Option Premium}
+	$\Delta t$ = $\dfrac{\tau}{N}$;
+	$\Delta x = \sigma \sqrt{\Delta t}$;
+	$\Delta y = \rho \Delta x$\;
+	$u = e^{\Delta x}$;
+	$d = e^{-\Delta x}$;
+	$p = \dfrac{e^{r \Delta t} - d}{u - d}$\;
+	running_n = $\dfrac{\text{runningTime}}{\Delta t} - 1$\;
+	
+\caption{Algorithm for pricing European down-and-out option}
+\end{algorithm}
+
+We
 
 \subsection{Comment on the numerical results and computation times taken for different $\rho$ and $N$ values}
+The different amoung of time taken and option prices for various set of $\rho$ and $N$ is shown below:
+
+
 
 \subsection{Comment on the numerical results and computation times taken for different $N$ values}
 
