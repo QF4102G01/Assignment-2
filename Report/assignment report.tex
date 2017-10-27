@@ -88,7 +88,6 @@ First we implemented the FSGM for American fixed-strike arithmetic-average put o
 	$u = e^{\Delta x}$;
 	$d = e^{-\Delta x}$;
 	$p = \dfrac{e^{r \Delta t} - d}{u - d}$\;
-	running_n = $\dfrac{\text{runningTime}}{\Delta t} - 1$\;
 	
 \caption{Algorithm for pricing European down-and-out option}
 \end{algorithm}
@@ -98,7 +97,46 @@ We
 \subsection{Comment on the numerical results and computation times taken for different $\rho$ and $N$ values}
 The different amoung of time taken and option prices for various set of $\rho$ and $N$ is shown below:
 
+\hspace{23mm} When $\rho=1$:
+\begin{center}
+	\begin{tabular}{| c | c | c | c |}
+		\hline $\rho$ & $N$ & Option price & Time taken in $\mu s$\\
+		[0.5ex]
+		\hline 1 & 50 & 5.3793 & 0.26287 \\
+		\hline 1 & 100 & 5.4178 & 2.649 \\
+		\hline 1 & 200 & 5.4428 & 16.86 \\
+		\hline 1 & 400 & 5.4553 & 139.52 \\
+		\hline
+	\end{tabular}
+\end{center}
 
+\hspace{23mm} When $\rho=0.5$:
+\begin{center}
+	\begin{tabular}{| c | c | c | c |}
+		\hline $\rho$ & $N$ & Option price & Time taken in $\mu s$\\
+		[0.5ex]
+		\hline 0.5 & 50 & 5.3456 & 0.60326 \\
+		\hline 0.5 & 100 & 5.4058 & 3.9802 \\
+		\hline 0.5 & 200 & 5.4361 & 31.521 \\
+		\hline 0.5 & 400 & 5.4509 & 299.12 \\
+		\hline
+	\end{tabular}
+\end{center}
+
+\hspace{23mm} When $\rho=0.2$:
+\begin{center}
+	\begin{tabular}{| c | c | c | c |}
+		\hline $\rho$ & $N$ & Option price & Time taken in $\mu s$\\
+		[0.5ex]
+		\hline 0.2 & 50 & 5.3391 & 2.1132 \\
+		\hline 0.2 & 100 & 5.3992 & 12.573 \\
+		\hline 0.2 & 200 & 5.4318 & 92.8 \\
+		\hline 0.2 & 400 & 5.4487 & 760.81 \\
+		\hline
+	\end{tabular}
+\end{center}
+
+Regarding the option value, using the same $\rho$ value, as $N$ increases, the estimated option value increases from $N = 50$ to $N = 400$. 
 
 \subsection{Comment on the numerical results and computation times taken for different $N$ values}
 
