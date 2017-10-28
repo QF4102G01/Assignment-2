@@ -9,8 +9,8 @@ function [optionValue] = explicitIIIFDMAmericanCall(S0, X, r, T, q, sigma, N, ds
     
     % Initialize discretized lattice
     VGrid = zeros(I+1, N+1);
-    VGrid(1, :) = X * exp(-r * (T - 0 : dt : T));
-    VGrid(I+1, :) = 0;
+    VGrid(1, :) = 0;
+    VGrid(I+1, :) = (Smax-X) * exp(-r*(T:-dt:0));
     
     % Initialize terminal payoff
     VGrid(:, N+1) = max((0:I) * ds - X, 0);
