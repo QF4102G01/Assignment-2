@@ -29,14 +29,10 @@ function [optionValue] = FSGMAmericanFixedStrikeLookbackPut(runningTime, tau, S0
     % Backward iterations
     for n = N-1 : -1 : 0
         newV = zeros(N+1, 2 * N + 1);
-        aS = zeros(N+1, 2 * N + 1);
         for j = 0 : n
             for k = -n : n
                 S = S0 * exp((2 * j - n) * deltaX);
                 A = S0 * exp(k * deltaX);
-
-                aS(j+jshift, k+kshift) = S;
-                
                 ku = min(k, 2 * j - n + 1);
                 kd = min(k, 2 * j - n);
                 Vu = v(j+1+jshift, ku+kshift);
@@ -45,7 +41,6 @@ function [optionValue] = FSGMAmericanFixedStrikeLookbackPut(runningTime, tau, S0
             end
         end
         v = newV;
-        aS;
     end
     
     k = floor(log(runningMin / S0) / deltaX);
