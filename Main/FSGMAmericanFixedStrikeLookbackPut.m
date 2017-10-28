@@ -7,7 +7,7 @@ function [optionValue] = FSGMAmericanFixedStrikeLookbackPut(runningTime, tau, S0
     deltaX = sigma * sqrt(deltaT);
     u = exp(deltaX);
     d = exp(-deltaX);
-    p = (exp(r * deltaT) - d) / (u-d);
+    p = (exp((r-q) * deltaT) - d) / (u-d);
     
     % Initialize shifts in j and k values
     jshift = 1;

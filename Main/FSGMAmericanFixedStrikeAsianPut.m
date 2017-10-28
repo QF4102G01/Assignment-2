@@ -8,7 +8,7 @@ function [optionValue] = FSGMAmericanFixedStrikeAsianPut(runningTime, tau, S0, s
     deltaY = rho * deltaX;
     u = exp(deltaX);
     d = exp(-deltaX);
-    p = (exp(r * deltaT) - d) / (u-d);
+    p = (exp((r-q) * deltaT) - d) / (u-d);
     m = 1 / rho;
     
     % Include the price at t = 0.25 in the Running Average
