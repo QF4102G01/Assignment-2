@@ -37,7 +37,7 @@ function [optionValue] = explicitIIIFDMAmericanCall(S0, X, r, T, q, sigma, N, ds
     ishift = 1;
     for n = N : -1 : 1
         row = a .* VGrid(i - 1 + ishift, n + 1) + b .* VGrid(i + ishift, n + 1) + c .* VGrid(i + 1 + ishift, n + 1);
-        payoff = (i * ds - X) .* exp(-r * i * dt);
+        payoff = (i * ds - X) .* exp(-r * n * dt);
         row = max(row, payoff);
         VGrid(i + ishift, n) = row;
     end
