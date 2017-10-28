@@ -13,7 +13,7 @@ function [optionValue] = explicitIIIFDMAmericanCall(S0, X, r, T, q, sigma, N, ds
     VGrid(I+1, :) = 0;
     
     % Initialize terminal payoff
-    VGrid(:, N+1) = max(X - (0:I) * ds, 0);
+    VGrid(:, N+1) = max((0:I) * ds - X, 0);
     
     % Initialize explicit scheme III coefficients
     i = (1 : (I-1))';
