@@ -37,7 +37,7 @@ function [optionValue] = FSGMAmericanFixedStrikeLookbackPut(runningTime, tau, S0
 
                 aS(j+jshift, k+kshift) = S;
                 
-                ku = k;
+                ku = min(k, 2 * j - n + 1);
                 kd = min(k, 2 * j - n);
                 Vu = v(j+1+jshift, ku+kshift);
                 Vd = v(j+jshift, kd+kshift);
