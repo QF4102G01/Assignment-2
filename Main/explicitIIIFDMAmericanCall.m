@@ -46,3 +46,9 @@ function [optionValue] = explicitIIIFDMAmericanCall(S0, X, r, T, q, sigma, N, ds
     optionValue = VGrid(round(S0 / ds) + ishift, 1);
 
 end
+
+function optionPrice =EuropeanVanillaCall(S, K, r, tau, sigma, q)
+	d1 = (log(S/K) + (r-q+sigma*sigma/2) * tau) / sigma / sqrt(tau);
+	d2 = d1 - sigma * sqrt(tau);
+	optionPrice = S*normcdf(d1) - normcdf(d2)*X*exp(-r*tau);
+end
