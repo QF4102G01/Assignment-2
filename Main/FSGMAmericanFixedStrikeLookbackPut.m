@@ -2,16 +2,22 @@
 %Group number: G01
 
 function [optionValue] = FSGMAmericanFixedStrikeLookbackPut(runningTime, tau, S0, sigma, q, runningMin, r, K, N)
-
+    % Initializing the parameters
     deltaT = tau / N;
     deltaX = sigma * sqrt(deltaT);
     u = exp(deltaX);
     d = exp(-deltaX);
     p = (exp(r * deltaT) - d) / (u-d);
+    
+    % Initialize shifts in j and k values
     jshift = 1;
     kshift = N + 1;
+    
+    % Initialize running minimum for lookback put
     runningMin = min(runningMin, S0);
-
+    
+    % Initialize terminal payoff
+    % For lookback put, rho is chosen to be 1
     v = zeros(N+1, 2 * N + 1);
     for j = 0 : N
         for k = -N : N
@@ -20,6 +26,7 @@ function [optionValue] = FSGMAmericanFixedStrikeLookbackPut(runningTime, tau, S0
         end
     end
     
+    % Backward iterations
     for n = N-1 : -1 : 0
         newV = zeros(N+1, 2 * N + 1);
         aS = zeros(N+1, 2 * N + 1);
@@ -29,7 +36,7 @@ function [optionValue] = FSGMAmericanFixedStrikeLookbackPut(runningTime, tau, S0
                 A = S0 * exp(k * deltaX);
 
                 aS(j+jshift, k+kshift) = S;
-
+                
                 ku = k;
                 kd = min(k, 2 * j - n);
                 Vu = v(j+1+jshift, ku+kshift);

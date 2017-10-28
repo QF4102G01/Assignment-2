@@ -12,20 +12,28 @@ N = 2900;
 ds = 0.05;
 
 % Execute FDM explicit III
+disp(['Executing explicit scheme III with N = ', num2str(N)]);
 run1 = explicitIIIFDM(S0, X, r, T, q, sigma, N, ds);
+disp(['The european vanilla call option price for this run is ', num2str(run1)]);
 
 % Determine a lower bound for N = T/deltaT
 Smax = 4 * X;
 I = floor(Smax / ds);
-N_lb = T * (sigma ^ 2 * I ^ 2 + r * I);
+N_lb = round(T * (sigma ^ 2 * I ^ 2 + r * I));
 
 % Rerun explicit III FDM with the value of lower bound N
+disp(['Executing explicit scheme III with N = ', num2str(N_lb)]);
 run2 = explicitIIIFDM(S0, X, r, T, q, sigma, N_lb, ds);
+disp(['The european vanilla call option price for this run is ', num2str(run2)]);
 
 % Rerun explicit III FDM and lower N gradually and locate the cut-off value
 % of N where the estimate loses all its significant figures
-N_co = 2916;
+disp(['Executing explicit scheme III with N = ', num2str(N_co)]);
+N_co = 2900;
 run3 = explicitIIIFDM(S0, X, r, T, q, sigma, N_co, ds);
+disp(['The european vanilla call option price for this run is ', num2str(run3)]);
 
 % Run explicit III FDM on American vanilla call option
+disp(['Executing explicit scheme III on American vanilla call with N = ', num2str(N)]);
 run4 = explicitIIIFDMAmericanCall(S0, X, r, T, q, sigma, N, ds);
+disp(['The american vanilla call option price for this run is ', num2str(run4)]);
