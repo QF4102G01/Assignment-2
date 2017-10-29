@@ -63,7 +63,7 @@
 % make a new page
 \newpage
 
-\section{Forward Grid Shooting Method on American floating-strike arithmetic-average call}
+\section{Forward Grid Shooting Method}
 Write a MatLab function to calculate the American fixed-strike arithmetic-average put option value using Forward Shooting Grid Method with linear interpolation.
 
 \subsection{FSGM for American fixed-strike arithmetic-average put option}
@@ -195,10 +195,9 @@ We use the forward shooting grid method which on each grid point representing on
 
 \subsection{Comment on the numerical results and computation times taken for different $N$ values}
 
-\hspace{23mm} When running minimum is $\$0.97$: \\
 \begin{center}
 	\begin{tabular}{| c | c | c | c |}
-		\hline running minimum(\$) & $N$ & Option price & Time taken in $\mu s$\\
+		\hline Running minimum(\$) & $N$ & Option price & Time taken in $\mu s$\\
 		[0.5ex]
 		\hline 0.97 & 50 & 0.086453 & 1.5335 \\
 		\hline 0.97 & 100 & 0.081535 & 10.473 \\
@@ -214,13 +213,13 @@ We use the forward shooting grid method which on each grid point representing on
 	\end{tabular}
 \end{center}
 
-\subsection{Comment on the numerical results obtained from lower running minimum value}
-The option values for the running minimum of $\$0.57$ is always $\$0.38$, because the current underlying asset price $\$1$ is too high that it is highly improbable for the future underlier price to be lower than the running minimum, and it is more beneficial to exercise the option immediately at the current time.
+The option value is at the higher level compared to exercising the option at the current time $t = 0.25$, suggesting that it is still within the holding region. As $N$ increases, we can see that the fluctuations of the option price obtained go smaller and smaller, and becomes stable and converging to the true value.
 
-\hspace{23mm} When running minimum is $\$0.57$: \\
+\subsection{Comment on the numerical results obtained from lower running minimum value}
+
 \begin{center}
 	\begin{tabular}{| c | c | c | c |}
-		\hline running minimum(\$) & $N$ & Option price & Time taken in $\mu s$\\
+		\hline Running minimum(\$) & $N$ & Option price & Time taken in $\mu s$\\
 		[0.5ex]
 		\hline 0.57 & 50 & 0.38 & 1.4168 \\
 		\hline 0.57 & 100 & 0.38 & 10.925 \\
@@ -235,6 +234,8 @@ The option values for the running minimum of $\$0.57$ is always $\$0.38$, becaus
 		\hline
 	\end{tabular}
 \end{center}
+
+The option values for the running minimum of $\$0.57$ is always $\$0.38$, because the current underlying asset price $\$1$ is too high that it is highly improbable for the future underlier price to be lower than the running minimum, and it is more beneficial to exercise the option immediately at the current time $t = 0.25$. Regardless of the value of $N$, the option value remains at the same level.
 
 \section{Explicit Difference Scheme III for vanilla call option}
 \subsection*{\emph{Statement of the problem}}
@@ -287,7 +288,7 @@ We verified the result by running the function with $N = 2917$. The option value
 
 \subsection{Cut-off value for the option price to lose all its significant figures}
 
-Starting with $N = 2917$, the theoretical value of having no violation of positivity conditions computed in the previous section, we decrease $N$ by 1 each time and re-run the algorithm. The results remain as $\$0.82529$ as $N$ decreases from 2917 to 2464. As $N$ is lowered to less than 2464, we observe that the results start to deviate from $\$0.82529$ to some extents. As $N$ is decreased further, we observe the following
+Starting with $N = 2917$, the theoretical value of having no violation of positivity conditions computed in the previous section, we decrease $N$ by 1 each time and re-run the algorithm. The results remain as $\$0.82529$ as $N$ decreases from 2917 to 2464. As $N$ is lowered to less than 2464, we observe that the results start to deviate from $\$0.82529$ to some extents. As $N$ decreases further, we observe the following
 \begin{center}
 	\begin{tabular}{| c | c |}
 		\hline N & Option value\\
