@@ -70,7 +70,7 @@ Write a MatLab function to calculate the American fixed-strike arithmetic-averag
 \subsection{FSGM for American fixed-strike arithmetic-average put option}
 
 \begin{algorithm}[H]
-\setstretch{1.5}
+\setstretch{1.4}
 	\KwData{runningTime, $\tau$, $S_0$, $\sigma$, $q$, $A$(running average), $r$, $K$, $N$, $\rho$}
 	\KwResult{$P_{FSGM}$, Option Premium}
 	$\Delta t$ = $\dfrac{\tau}{N}$;
@@ -277,7 +277,7 @@ Hence we could see that when $\Delta t = 0.01$, and hence $N = \dfrac{0.25}{0.01
 
 We go further to execute checking of positivity condition, and with $N = 25$, the coefficients $b_i$ are having 653 out of 719 elements violating the positivity condition. This leads to the outcome that the option price is totally off.
 
-\subsection{Cut-off value for the option value to lose all significant figures}
+\subsection{Lower bound value for the coefficients $a$, $b$, $c$ to have no violation of positivity conditions}
 By applying the positivity condition for explicit difference scheme III, i.e by solving the inequality: $$1 - \sigma^2 i^2 \dfrac{T}{N} - ri \dfrac{T}{N} > 0$$.
 
 Hence a lower bound of N should satisfy: $$N > \sigma^2 i^2 T + r i T$$ $$N > 2916.18$$. 
@@ -286,7 +286,27 @@ Since N is an integer, we have the lower bound for N should be 2917.
 
 We verified the result by running the function with $N = 2917$. The option value obatined is $\$0.82529$, where compared to the theoretical value $\$0.82551$ obtained using the formula, it has 3 significant figures to be exact. And we further check the violation of positivity conditions, and none of the coefficients $a$, $b$, and $c$ got to violate the conditions.
 
-\subsection{EDS III for American vanilla call options}
+\subsection{Cut-off value for the option price to lose all its significant figures}
 
+Starting with $N = 2917$, the theoretical value of having no violation of positivity conditions computed in the previous section, we decrease $N$ by 1 each time and re-run the algorithm. The results remain as $\$0.82529$ as $N$ decreases from 2917 to 2464. As $N$ is lowered to less than 2464, we observe that the results start to deviate from $\$0.82529$ to some extents. As $N$ is decreased further, we observe the following
+\begin{center}
+	\begin{tabular}{| c | c |}
+		\hline N & Option value\\
+		[0.5ex]
+		\hline 2455 & 0.83409 \\
+		\hline 2454 & 0.81025 \\
+		\hline 2453 & 0.91772 \\
+		\hline 2452 & 0.7701 \\
+		\hline 2451 & 1.1112 \\
+		\hline
+	\end{tabular}
+\end{center}
+
+Thus we could see that $N = 2453$ is the first time that the results loses all its significant figures. Hence the cut-off value for $N$ should be 2453.
+
+\subsection{EDS III for American vanilla call options}
+By using the lower bound value of $N$ for no violation of positivity conditions, which we obtained was $N = 2917$, we obtained the option price of \textbf{\$0.83189}.
+
+Compared to the results obtained earlier of the European styled vanilla call option, which was \$0.82529, the option value for the American vanilla call option is higher. This is due to the extra option to exercise early of American styled options, which adds value to this option.
 
 \end{document}
