@@ -16,6 +16,10 @@ disp(['Executing explicit scheme III with N = ', num2str(N)]);
 run1 = explicitIIIFDM(S0, X, r, T, q, sigma, N, ds);
 disp(['The european vanilla call option price for this run is ', num2str(run1)]);
 
+% Compare against the exact value
+bench = EuropeanVanillaCall(S0, q, X, T, r, sigma);
+disp(['The value of the call option using the formulae is ', num2str(bench)]);
+
 % Determine a lower bound for N = T/deltaT
 Smax = 4 * X;
 I = floor(Smax / ds);
