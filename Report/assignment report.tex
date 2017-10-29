@@ -222,8 +222,8 @@ Write a MatLab function to implement the explicit difference scheme III for pric
 	\For {$i = 0, 1, \dots , I$} {
 		$V^{i}_{N} = \max(X - i\Delta s, 0)$\;
 		$a_i = \dfrac{1}{1 + r \Delta t} \left [\dfrac{1}{2} \sigma^2 i^2 \Delta t \right ]$\;
-		$b_i = \dfrac{1}{1 + r \Delta t} \left (1 - \sigma^2 i^2 \Delta t - r i \Delta t \right )$\;
-		$c_i = \dfrac{1}{1 + r \Delta t} \left [ \dfrac{1}{2} ( \sigma^2 i^2 + ri) \Delta t \right ]$\;
+		$b_i = \dfrac{1}{1 + r \Delta t} \left (1 - \sigma^2 i^2 \Delta t - (r-q) i \Delta t \right )$\;
+		$c_i = \dfrac{1}{1 + r \Delta t} \left [ \dfrac{1}{2} ( \sigma^2 i^2 + (r-q)i) \Delta t \right ]$\;
 		\For {$n = N-1, N-2, \dots, 0$} {
 			$V_n^i = a_i V^{i - 1}_{n+1} + b_i V^i_{n+1} + c_i V^{i+1}_{n+1}$ \;
 		}
