@@ -50,5 +50,5 @@ end
 function optionPrice =EuropeanVanillaCall(S, K, r, tau, sigma, q)
 	d1 = (log(S/K) + (r-q+sigma*sigma/2) * tau) / sigma / sqrt(tau);
 	d2 = d1 - sigma * sqrt(tau);
-	optionPrice = S*normcdf(d1) - normcdf(d2)*X*exp(-r*tau);
+	optionPrice = S*normcdf(d1) - normcdf(d2)*K*exp(-r*tau);
 end
