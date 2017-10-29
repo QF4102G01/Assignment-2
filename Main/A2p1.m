@@ -26,7 +26,7 @@ for rho = rhos
         stamp2 = now;
         timespent = (stamp2 - stamp1) * 10^6;
         disp(['For rho = ', num2str(rho), ' and N = ', num2str(N), '. The option price is : ', num2str(result)]);
-        disp(['Time taken to finish this run is ', num2str(timespent)]);
+        disp(['Time taken in microseconds to finish this run is ', num2str(timespent)]);
     end
 end
 
@@ -40,7 +40,7 @@ for N = Ns
     timespent = (stamp2 - stamp1) * 10^6;
     disp(['Option price obtained with running minimum 0.97 and N = ', ...
           num2str(N), ' is ', num2str(result)]);
-    disp(['Time taken to finish running is ', num2str(timespent)]);
+    disp(['Time taken in microseconds to finish running is ', num2str(timespent)]);
 end
 
 % Calculate FSGM American Fixed Strike Asian Lookback Put value
@@ -52,5 +52,5 @@ for N = Ns
     timespent = (stamp2 - stamp1) * 10^6;
     disp(['Option price obtained with running minimum 0.57 and N = ', ...
           num2str(N), ' is ', num2str(result)]);
-    disp(['Time taken in microsecond to finish running is ', num2str(timespent)]);
+    disp(['Time taken in microseconds to finish running is ', num2str(timespent)]);
 end
