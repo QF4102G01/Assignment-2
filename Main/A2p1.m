@@ -47,7 +47,7 @@ end
 % by changing running minimum to $0.57
 for N = Ns
     stamp1 = now;
-    result = FSGMAmericanFixedStrikeLookbackPut(0.25, 0.25, 1, 0.4, 0.01, 0.57, 0.1, 0.95, N)
+    result = FSGMAmericanFixedStrikeLookbackPut(0.25, 0.25, 1, 0.4, 0.01, 0.57, 0.1, 0.95, N);
     stamp2 = now;
     timespent = (stamp2 - stamp1) * 10^6;
     disp(['Option price obtained with running minimum 0.57 and N = ', ...

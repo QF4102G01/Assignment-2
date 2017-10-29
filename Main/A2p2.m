@@ -33,12 +33,18 @@ disp(['The european vanilla call option price for this run is ', num2str(run2)])
 
 % Rerun explicit III FDM and lower N gradually and locate the cut-off value
 % of N where the estimate loses all its significant figures
-N_co = 2900;
-disp(['Executing explicit scheme III with N = ', num2str(N_co)]);
-run3 = explicitIIIFDM(S0, X, r, T, q, sigma, N_co, ds);
-disp(['The european vanilla call option price for this run is ', num2str(run3)]);
+check = run2;
+for n = N_lb : -1 : 2440
+    run3 = explicitIIIFDM(S0, X, r, T, q, sigma, n, ds);
+    if floor(run3,1) ~= round(check, 1)
+        disp(['Executing explicit scheme III with N = ', num2str(n)]);
+        disp(['The european vanilla call option price for this run is ', num2str(run3)]);
+    end
+end
+
+N_cutoff = 2453;
 
 % Run explicit III FDM on American vanilla call option
 disp(['Executing explicit scheme III on American vanilla call with N = ', num2str(N)]);
-run4 = explicitIIIFDMAmericanCall(S0, X, r, T, q, sigma, N, ds);
+run4 = explicitIIIFDMAmericanCall(S0, X, r, T, q, sigma, N_lb, ds);
 disp(['The american vanilla call option price for this run is ', num2str(run4)]);
