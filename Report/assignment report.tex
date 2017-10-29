@@ -204,12 +204,41 @@ The option values for the running minimum of $\$0.57$ is always $\$0.38$, becaus
 \subsection*{\emph{Statement of the problem}}
 Write a MatLab function to implement the explicit difference scheme III for pricing European vanilla calls. Test the algorithm out with a European vanilla call option with strike $K = \$9$, time to maturity $0.25$ year, current underlier price $S = \$9.8$, volatility $\sigma=0.15$. The dividend yield $q = 1\%$ and risk-free rate is $0.1\%$.
 
-\subsection{Description of work done}
+\subsection{Explicit Difference Scheme III for European vanilla call option}
+
+\begin{algorithm}[H]
+\setstretch{1.5}
+	\KwData{$S_0$, $X$, $r$, $T$, $\sigma$, $N$, $\Delta s$}
+	\KwResult{$c_{\text{EDS III}}$, Option Premium}
+	$S_{\max} = 4X$, 
+	$\Delta t = \dfrac{T}{N}$, 
+	$I = round \left ( \dfrac{S_{\max}}{\Delta s} \right)$\;
+	
+	\For {$j = 0, 1, \dots , N$} {
+		$V^{0}_{j} = (S_{\max} - X)e^{-r(N-j) \Delta t}$\;
+		$V^{I}_{j} = 0$\;
+	}
+	
+	\For {$i = 0, 1, \dots , I$} {
+		$V^{i}_{N} = \max(X - i\Delta s, 0)$\;
+		$a_i = \dfrac{1}{1 + r \Delta t} \left [\dfrac{1}{2} \sigma^2 i^2 \Delta t \right ]$\;
+		$b_i = \dfrac{1}{1 + r \Delta t} \left (1 - \sigma^2 i^2 \Delta t - r i \Delta t \right )$\;
+		$c_i = \dfrac{1}{1 + r \Delta t} \left [ \dfrac{1}{2} ( \sigma^2 i^2 + ri) \Delta t \right ]$\;
+		\For {$n = N-1, N-2, \dots, 0$} {
+			$V_n^i = a_i V^{i - 1}_{n+1} + b_i V^i_{n+1} + c_i V^{i+1}_{n+1}$ \;
+		}
+	}
+	$i_0 = round \left (\dfrac{S_0}{\Delta s} \right )$\;
+	$c_{\text{EDS III}} = V_0^{i_0}$\;
+	
+\end{algorithm}
+
 
 \subsection{Comparing option values computed using EDS III and the exact formula}
 
 \subsection{Cut-off value for the option value to lose all significant figures}
 
 \subsection{EDS III for American vanilla call options}
+
 
 \end{document}
