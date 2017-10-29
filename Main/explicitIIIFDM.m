@@ -42,5 +42,13 @@ function [optionValue] = explicitIIIFDM(S0, X, r, T, q, sigma, N, ds)
     
     % Obtain the option value
     optionValue = VGrid(round(S0 / ds) + ishift, 1);
+	
+	disp(['Price of european vanilla call option with the same parameters is : ', num2str(EuropeanVanillaCall(S0, X, r, T, sigma, q))])
 
+end
+
+function optionPrice =EuropeanVanillaCall(S, K, r, tau, sigma, q)
+	d1 = (log(S/K) + (r-q+sigma*sigma/2) * tau) / sigma / sqrt(tau);
+	d2 = d1 - sigma * sqrt(tau);
+	optionPrice = S*normcdf(d1) - normcdf(d2)*X*exp(-r*tau);
 end
