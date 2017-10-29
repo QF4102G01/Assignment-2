@@ -85,7 +85,7 @@ Write a MatLab function to calculate the American fixed-strike arithmetic-averag
 	}
 	\For {$n = N-1$ to $1$} {
 		\For {$j = 0$ to $n$} {
-			\For {$k = -\dfrac{n}{\rho}, -\frac{n}{\rho}+1, \dots, \frac{n}{\rho}$} {
+			\For {$k = -\frac{n}{\rho}, -\frac{n}{\rho}+1, \dots, \frac{n}{\rho}$} {
 				$S = S_{0} e^{(2j - n) \Delta x}$\;
 				$A' = A e^{k \Delta x}$\;
 				$A_{up} = \dfrac{A' (n + runningN) + Su}{n + runningN + 1}$\;
@@ -175,7 +175,7 @@ Next, an American fixed-strike lookback put option is concerned, initiated 0.25 
 	}
 	\For {$n = N-1$ to $1$} {
 		\For {$j = 0$ to $n$} {
-			\For {$k = -\frac{n}{\rho}, -frac{n}{\rho}+1, \dots, \frac{n}{\rho}$} {
+			\For {$k = -\frac{n}{\rho}, -\frac{n}{\rho}+1, \dots, \frac{n}{\rho}$} {
 				$S = S_{0} e^{(2j - n) \Delta x}$\;
 				$A' = A e^{k \Delta x}$\;
 				$A_{up} = \min(A', Su)$\;
