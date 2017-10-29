@@ -33,7 +33,12 @@ end
 % with N values ranging from 50 to 500 in increments of 50
 Ns = 50 : 50 : 500;
 for N = Ns
-    FSGMAmericanFixedStrikeLookbackPut(0.25, 0.25, 1, 0.4, 0.01, 0.97, 0.1, 0.95, N)
+    stamp1 = now;
+    result = FSGMAmericanFixedStrikeLookbackPut(0.25, 0.25, 1, 0.4, 0.01, 0.97, 0.1, 0.95, N);
+    stamp2 = now;
+    disp(['Option price obtained with running minimum 0.97 and N = ', ...
+          num2str(N), ' is ', num2str(result)]);
+    disp(['Time taken to finish running is ', num2str(stamp2 - stamp1)]);
 end
 
 % Calculate FSGM American Fixed Strike Asian Lookback Put value
