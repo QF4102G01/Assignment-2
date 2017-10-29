@@ -243,7 +243,7 @@ The option values for the running minimum of $\$0.57$ is always $\$0.38$, becaus
 
 \section{Explicit Difference Scheme III for vanilla call option}
 \subsection*{\emph{Statement of the problem}}
-Write a MatLab function to implement the explicit difference scheme III for pricing European vanilla calls. Test the algorithm out with a European vanilla call option with strike $K = \$9$, time to maturity $0.25$ year, current underlier price $S = \$9.8$, volatility $\sigma=0.15$. The dividend yield $q = 1\%$ and risk-free rate is $0.1\%$.
+Write a MatLab function to implement the explicit difference scheme III for pricing European vanilla calls. Test the algorithm out with a European vanilla call option with strike $K = \$9$, time to maturity $0.25$ year, current underlier price $S_0 = \$9.8$, volatility $\sigma=0.15$. The dividend yield $q = 1\%$ and risk-free rate is $0.1\%$.
 
 \subsection{Explicit Difference Scheme III for European vanilla call option}
 
@@ -274,10 +274,22 @@ Write a MatLab function to implement the explicit difference scheme III for pric
 	
 \end{algorithm}
 
-
 \subsection{Comparing option values computed using EDS III and the exact formula}
 
+From the explicit scheme III implemented above, with $N = 2900$ and $\Delta s = 0.05$, we obtain the result that the European vanilla call option should be priced at $\$(7.05527 \times 10^{21})$. We computed the option value for the same European vanilla call option using the exact formula, and obtained $\$0.82551$. 
+
+Hence we could see that when $\Delta t = 0.01$, and hence $N = \dfrac{0.25}{0.01} = 25$, the discretized grid will produce ridiculously large option value due to the accumulation of discretization error from each step.
+
+We go further to execute checking of positivity condition, and with $N = 25$, the coefficients $b_i$ are having 653 out of 719 elements violating the positivity condition. This leads to the outcome that the option price is totally off.
+
 \subsection{Cut-off value for the option value to lose all significant figures}
+By applying the positivity condition for explicit difference scheme III, i.e by solving the inequality: $$1 - \sigma^2 i^2 \dfrac{T}{N} - ri \dfrac{T}{N} > 0$$.
+
+Hence a lower bound of N should satisfy: $$N > \sigma^2 i^2 T + r i T$$ $$N > 2916.18$$. 
+
+Since N is an integer, we have the lower bound for N should be 2917.
+
+We verified the result by running the function with $N = 2917$. The option value obatined is $\$0.82529$, where compared to the theoretical value $\$0.82551$ obtained using the formula, it has 3 significant figures to be exact. And we further check the violation of positivity conditions, and none of the coefficients $a$, $b$, and $c$ got to violate the conditions.
 
 \subsection{EDS III for American vanilla call options}
 
