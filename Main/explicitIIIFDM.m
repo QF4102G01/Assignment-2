@@ -10,11 +10,11 @@ function [optionValue] = explicitIIIFDM(S0, X, r, T, q, sigma, N, ds)
     
     % Initialize discretized grids
     VGrid = zeros(I+1, N+1);
-    VGrid(1, :) = X * exp(-r * (T - 0 : dt : T));
-    VGrid(I+1, :) = 0;
+    VGrid(1, :) = 0;
+    VGrid(I+1, :) = (Smax-X) * exp(-r*(T:-dt:0));
     
     % Initialize terminal payoff
-    VGrid(:, N+1) = max(X - (0:I) * ds, 0);
+    VGrid(:, N+1) = max((0:I) * ds - X, 0);
     
     % Initialize coefficients for explicit scheme III
     i = (1 : (I-1))';

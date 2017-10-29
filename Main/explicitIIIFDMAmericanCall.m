@@ -2,6 +2,7 @@
 %Group number: G01
 
 function [optionValue] = explicitIIIFDMAmericanCall(S0, X, r, T, q, sigma, N, ds)
+
     % Initialize parameters
     Smax = 4 * X;
     dt = T / N;
