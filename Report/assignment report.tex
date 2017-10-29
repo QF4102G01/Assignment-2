@@ -194,26 +194,23 @@ Next, an American fixed-strike lookback put option is concerned, initiated 0.25 
 
 We use the forward shooting grid method which on each grid point representing one underlying price and one current time. Different from the algorithm for Asian option, we are not using array to represent different values of running minimum on each grid point, and we are not interpolating to obtain to value shot from each grid point. The stock price values branch out from the starting price of the underlying asset.
 
-Compute the function for number of time periods $N = 50$ to $N = 500$ with increments of 50, and comment on the numerical results and computation time taken. Lastly, re-run the algorithm with running minimum changed from $\$0.97$ to $\$0.57$.
-
 \subsection{Comment on the numerical results and computation times taken for different $N$ values}
 
 \hspace{23mm} When running minimum is $\$0.97$: \\
-\textbf{Penghao please fill this up}
 \begin{center}
 	\begin{tabular}{| c | c | c | c |}
 		\hline running minimum(\$) & $N$ & Option price & Time taken in $\mu s$\\
 		[0.5ex]
-		\hline 0.97 & 50 & 5.36 & 0.61176 \\
-		\hline 0.97 & 100 & 5.4181 & 4.0884 \\
-		\hline 0.97 & 150 & 5.4487 & 34.326 \\
-		\hline 0.97 & 200 & 5.4487 & 34.326 \\
-		\hline 0.97 & 250 & 5.4487 & 34.326 \\
-		\hline 0.97 & 300 & 5.4487 & 34.326 \\
-		\hline 0.97 & 350 & 5.4487 & 34.326 \\
-		\hline 0.97 & 400 & 5.4639 & 291.35 \\
-		\hline 0.97 & 450 & 5.4487 & 34.326 \\
-		\hline 0.97 & 500 & 5.4487 & 34.326 \\
+		\hline 0.97 & 50 & 0.086453 & 1.5335 \\
+		\hline 0.97 & 100 & 0.081535 & 10.473 \\
+		\hline 0.97 & 150 & 0.08706 & 35.415 \\
+		\hline 0.97 & 200 & 0.090432 & 89.902 \\
+		\hline 0.97 & 250 & 0.092765 & 169.29 \\
+		\hline 0.97 & 300 & 0.087203 & 287.93 \\
+		\hline 0.97 & 350 & 0.089026 & 444.01 \\
+		\hline 0.97 & 400 & 0.090541 & 646.26 \\
+		\hline 0.97 & 450 & 0.091819 & 923.92 \\
+		\hline 0.97 & 500 & 0.092904 & 1285.7 \\
 		\hline
 	\end{tabular}
 \end{center}
@@ -222,21 +219,20 @@ Compute the function for number of time periods $N = 50$ to $N = 500$ with incre
 The option values for the running minimum of $\$0.57$ is always $\$0.38$, because the current underlying asset price $\$1$ is too high that it is highly improbable for the future underlier price to be lower than the running minimum, and it is more beneficial to exercise the option immediately at the current time.
 
 \hspace{23mm} When running minimum is $\$0.57$: \\
-\textbf{Penghao please fill this up}
 \begin{center}
 	\begin{tabular}{| c | c | c | c |}
 		\hline running minimum(\$) & $N$ & Option price & Time taken in $\mu s$\\
 		[0.5ex]
-		\hline 0.57 & 50 & 5.36 & 0.61176 \\
-		\hline 0.57 & 100 & 5.4181 & 4.0884 \\
-		\hline 0.57 & 150 & 5.4487 & 34.326 \\
-		\hline 0.57 & 200 & 5.4487 & 34.326 \\
-		\hline 0.57 & 250 & 5.4487 & 34.326 \\
-		\hline 0.57 & 300 & 5.4487 & 34.326 \\
-		\hline 0.57 & 350 & 5.4487 & 34.326 \\
-		\hline 0.57 & 400 & 5.4639 & 291.35 \\
-		\hline 0.57 & 450 & 5.4487 & 34.326 \\
-		\hline 0.57 & 500 & 5.4487 & 34.326 \\
+		\hline 0.57 & 50 & 0.38 & 1.4168 \\
+		\hline 0.57 & 100 & 0.38 & 10.925 \\
+		\hline 0.57 & 150 & 0.38 & 33.6953 \\
+		\hline 0.57 & 200 & 0.38 & 92.7302 \\
+		\hline 0.57 & 250 & 0.38 & 166.4106 \\
+		\hline 0.57 & 300 & 0.38 & 295.1613 \\
+		\hline 0.57 & 350 & 0.38 & 472.1205 \\
+		\hline 0.57 & 400 & 0.38 & 691.3773 \\
+		\hline 0.57 & 450 & 0.38 & 974.2311 \\
+		\hline 0.57 & 500 & 0.38 & 1468.5976 \\
 		\hline
 	\end{tabular}
 \end{center}
@@ -275,7 +271,6 @@ Write a MatLab function to implement the explicit difference scheme III for pric
 \end{algorithm}
 
 \subsection{Comparing option values computed using EDS III and the exact formula}
-
 From the explicit scheme III implemented above, with $N = 2900$ and $\Delta s = 0.05$, we obtain the result that the European vanilla call option should be priced at $\$(7.05527 \times 10^{21})$. We computed the option value for the same European vanilla call option using the exact formula, and obtained $\$0.82551$. 
 
 Hence we could see that when $\Delta t = 0.01$, and hence $N = \dfrac{0.25}{0.01} = 25$, the discretized grid will produce ridiculously large option value due to the accumulation of discretization error from each step.
