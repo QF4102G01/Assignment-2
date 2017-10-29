@@ -39,7 +39,7 @@
 \usepackage{graphicx}
 
 % include algorithm package
-\usepackage[]{algorithm2e}
+\usepackage[]{algorithm2e, setspace}
 
 % change font to times new roman
 %\usepackage{times}
@@ -70,6 +70,7 @@ Write a MatLab function to calculate the American fixed-strike arithmetic-averag
 \subsection{FSGM for American fixed-strike arithmetic-average put option}
 
 \begin{algorithm}[H]
+\setstretch{1.5}
 	\KwData{runningTime, $\tau$, $S_0$, $\sigma$, $q$, $A$(running average), $r$, $K$, $N$, $\rho$}
 	\KwResult{$P_{FSGM}$, Option Premium}
 	$\Delta t$ = $\dfrac{\tau}{N}$;
@@ -85,19 +86,20 @@ Write a MatLab function to calculate the American fixed-strike arithmetic-averag
 	}
 	\For {$n = N-1$ to $1$} {
 		\For {$j = 0$ to $n$} {
-			\For {$k = -\frac{n}{\rho}, -frac{n}{\rho}+1, \dots, \frac{n}{\rho}$} {
-				$S = S_{0} \exp[(2j - n) * \Delta x]$\;
-				$A' = A \exp(k \Delta x)$\;
-				$A_{up} = \frac{A' (n + runningN) + Su}{n + runningN + 1}$\;
-				$A_{down} = \frac{A' (n + runningN) + Sd}{n + runningN + 1}$\;
-				$k_{u} = floor(\frac{ln(\frac{A_{up}}{A})}{\Delta y})$\;
-				$k_{d} = floor(\frac{ln(\frac{A_{down}}{A})}{\Delta y})$\;
+			\For {$k = -\dfrac{n}{\rho}, -\frac{n}{\rho}+1, \dots, \frac{n}{\rho}$} {
+				$S = S_{0} e^{(2j - n) \Delta x}$\;
+				$A' = A e^{k \Delta x}$\;
+				$A_{up} = \dfrac{A' (n + runningN) + Su}{n + runningN + 1}$\;
+				$A_{down} = \dfrac{A' (n + runningN) + Sd}{n + runningN + 1}$\;
+				$k_{u} = \left\lfloor\dfrac{ln(A_{up}/{A})}{\Delta y}\right\rfloor$\;
+				$k_{d} = \left\lfloor\dfrac{ln(A_{down}/{A})}{\Delta y}\right\rfloor$\;
 				$v_{u} = \Pi v(A_{k_{u}}, S_{u})$\;
 				$v_{d} = \Pi v(A_{k_{d}}, S_{d})$\;
-				$v(j,k) = \max(\exp(-r \Delta t) * (pv_{u} + (1-p)v_{d}), K - A')$;
+				$v(j,k) = \max(e^{-r \Delta t} (pv_{u} + (1-p)v_{d}), K - A')$;
 			}
 		}
 	}
+	$P_{FSGM} = \max(v(0,0), K - A)$\;
 \caption{Algorithm for pricing American arithmetic-Asian put}
 \end{algorithm}
 
@@ -116,10 +118,10 @@ The different amoung of time taken and option prices for various set of $\rho$ a
 	\begin{tabular}{| c | c | c | c |}
 		\hline $\rho$ & $N$ & Option price & Time taken in $\mu s$\\
 		[0.5ex]
-		\hline 1 & 50 & 5.3942(\textbf{this value has been updated, if not correct please call 86984390}) & 0.26287 \\
-		\hline 1 & 100 & 5.4178 & 2.649 \\
-		\hline 1 & 200 & 5.4428 & 16.86 \\
-		\hline 1 & 400 & 5.4553 & 139.52 \\
+		\hline 1 & 50 & 5.3942 & 0.41758 \\
+		\hline 1 & 100 & 5.4301 & 2.3993 \\
+		\hline 1 & 200 & 5.4552 & 16.218 \\
+		\hline 1 & 400 & 5.4685 & 142.62 \\
 		\hline
 	\end{tabular}
 \end{center}
@@ -129,10 +131,10 @@ The different amoung of time taken and option prices for various set of $\rho$ a
 	\begin{tabular}{| c | c | c | c |}
 		\hline $\rho$ & $N$ & Option price & Time taken in $\mu s$\\
 		[0.5ex]
-		\hline 0.5 & 50 & 5.3456 & 0.60326 \\
-		\hline 0.5 & 100 & 5.4058 & 3.9802 \\
-		\hline 0.5 & 200 & 5.4361 & 31.521 \\
-		\hline 0.5 & 400 & 5.4509 & 299.12 \\
+		\hline 0.5 & 50 & 5.36 & 0.61176 \\
+		\hline 0.5 & 100 & 5.4181 & 4.0884 \\
+		\hline 0.5 & 200 & 5.4487 & 34.326 \\
+		\hline 0.5 & 400 & 5.4639 & 291.35 \\
 		\hline
 	\end{tabular}
 \end{center}
@@ -142,20 +144,24 @@ The different amoung of time taken and option prices for various set of $\rho$ a
 	\begin{tabular}{| c | c | c | c |}
 		\hline $\rho$ & $N$ & Option price & Time taken in $\mu s$\\
 		[0.5ex]
-		\hline 0.2 & 50 & 5.3391 & 2.1132 \\
-		\hline 0.2 & 100 & 5.3992 & 12.573 \\
-		\hline 0.2 & 200 & 5.4318 & 92.8 \\
-		\hline 0.2 & 400 & 5.4487 & 760.81 \\
+		\hline 0.2 & 50 & 5.3533 & 1.3995 \\
+		\hline 0.2 & 100 & 5.412 & 10.18 \\
+		\hline 0.2 & 200 & 5.4446 & 89.083 \\
+		\hline 0.2 & 400 & 5.4487 & 706.65 \\
 		\hline
 	\end{tabular}
 \end{center}
 
-Regarding the option value, using the same $\rho$ value, as $N$ increases, the estimated option value increases from $N = 50$ to $N = 400$. 
+Regarding the option value, using the same $\rho$ value, as $N$ increases, the estimated option value increases from $N = 50$ to $N = 400$. The time taken for the program to finish also increase. As $N
+$ becomes two times the previous value, the run time becomes about 8 times the previous value, implying that the time complexity is cubic with reference to $N$. This is significant improvement from the two-state-variable BTM, which takes $O(2^n)$ for the computation in each backward iteration.
+
+Across different values of $\rho$, with the same $N$ value, we observe that the option price obtained is lowered. This is due to the fact that the discretized grids are more finely divided, leading to the payoff at each state being interpolating and landing on a more exact and well-approximated value. Also the run time increases approximately 2 times when we change $\rho=1$ to $\rho=0.5$, and approximately 5 times when we change $\rho=1$ to $\rho=0.2$, which implies that the time complexity of this method is linear with reference to $\rho$.
 
 \subsection{FSGM for American fixed-strike lookback put option}
 Next, an American fixed-strike lookback put option is concerned, initiated 0.25 year ago, and still having 0.25 year to expiry. The current underlier price $S_{0.25}=\$1$, volatility $\sigma=40\%$ and dividend yield $q = 0.01$. The running minimum is at $\$0.97$ which was taken over the earlier period of 0.25 year. The risk-free rate $r_f=0.1$ and strike $K=\$0.95$.
 
 \begin{algorithm}[H]
+\setstretch{1.5}
 	\KwData{runningTime, $\tau$, $S_0$, $\sigma$, $q$, $A$(running minimum), $r$, $K$, $N$}
 	\KwResult{$P_{FSGM}$, Option Premium}
 	$\Delta t$ = $\dfrac{\tau}{N}$;
@@ -171,15 +177,15 @@ Next, an American fixed-strike lookback put option is concerned, initiated 0.25 
 	\For {$n = N-1$ to $1$} {
 		\For {$j = 0$ to $n$} {
 			\For {$k = -\frac{n}{\rho}, -frac{n}{\rho}+1, \dots, \frac{n}{\rho}$} {
-				$S = S_{0} \exp[(2j - n) * \Delta x]$\;
-				$A' = A \exp(k \Delta x)$\;
+				$S = S_{0} e^{(2j - n) \Delta x}$\;
+				$A' = A e^{k \Delta x}$\;
 				$A_{up} = \min(A', Su)$\;
 				$A_{down} = \min(A', Sd)$\;
 				$k_{u} = round(\ln(\frac{A_{up}}{A}) / \Delta x)$\;
 				$k_{d} = round(\ln(\frac{A_{down}}{A}) / \Delta x)$\;
-				$v_{u} = v(A\exp(k_{u}\Delta x), Su)$\;
-				$v_{d} = v(A\exp(k_{d}\Delta x), Sd)$\;
-				$v(j,k) = \max(\exp(-r \Delta t) * (pv_{u} + (1-p)v_{d}), K - A')$;
+				$v_{u} = v(A e^{k_{u}\Delta x}, Su)$\;
+				$v_{d} = v(A e^{k_{d}\Delta x}, Sd)$\;
+				$v(j,k) = \max(e^{-r \Delta t}(pv_{u} + (1-p)v_{d}), K - A')$;
 			}
 		}
 	}
@@ -198,10 +204,12 @@ The option values for the running minimum of $\$0.57$ is always $\$0.38$, becaus
 \subsection*{\emph{Statement of the problem}}
 Write a MatLab function to implement the explicit difference scheme III for pricing European vanilla calls. Test the algorithm out with a European vanilla call option with strike $K = \$9$, time to maturity $0.25$ year, current underlier price $S = \$9.8$, volatility $\sigma=0.15$. The dividend yield $q = 1\%$ and risk-free rate is $0.1\%$.
 
-\subsection{Newly issued European floating strike lookback put options}
+\subsection{Description of work done}
 
-\subsection{Previously issued European floating strike lookback put options}
+\subsection{Comparing option values computed using EDS III and the exact formula}
 
-\subsection{Analyze, compare and comment on the results}
+\subsection{Cut-off value for the option value to lose all significant figures}
+
+\subsection{EDS III for American vanilla call options}
 
 \end{document}
