@@ -194,32 +194,9 @@ Next, an American fixed-strike lookback put option is concerned, initiated 0.25 
 
 We use the forward shooting grid method which on each grid point representing one underlying price and one current time. Different from the algorithm for Asian option, we are not using array to represent different values of running minimum on each grid point, and we are not interpolating to obtain to value shot from each grid point. The stock price values branch out from the starting price of the underlying asset.
 
-\subsection{Comment on the numerical results and computation times taken for different $N$ values}
 Compute the function for number of time periods $N = 50$ to $N = 500$ with increments of 50, and comment on the numerical results and computation time taken. Lastly, re-run the algorithm with running minimum changed from $\$0.97$ to $\$0.57$.
 
-\hspace{23mm} When running minimum is $\$0.57$: \\
-\textbf{Penghao please fill this up}
-\begin{center}
-	\begin{tabular}{| c | c | c | c |}
-		\hline running minimum(\$) & $N$ & Option price & Time taken in $\mu s$\\
-		[0.5ex]
-		\hline 0.57 & 50 & 5.36 & 0.61176 \\
-		\hline 0.57 & 100 & 5.4181 & 4.0884 \\
-		\hline 0.57 & 150 & 5.4487 & 34.326 \\
-		\hline 0.57 & 200 & 5.4487 & 34.326 \\
-		\hline 0.57 & 250 & 5.4487 & 34.326 \\
-		\hline 0.57 & 300 & 5.4487 & 34.326 \\
-		\hline 0.57 & 350 & 5.4487 & 34.326 \\
-		\hline 0.57 & 400 & 5.4639 & 291.35 \\
-		\hline 0.57 & 450 & 5.4487 & 34.326 \\
-		\hline 0.57 & 500 & 5.4487 & 34.326 \\
-		\hline
-	\end{tabular}
-\end{center}
-
-
-\subsection{Comment on the numerical results obtained from lower running minimum value}
-The option values for the running minimum of $\$0.57$ is always $\$0.38$, because the current underlying asset price $\$1$ is too high that it is highly improbable for the future underlier price to be lower than the running minimum, and it is more beneficial to exercise the option immediately at the current time.
+\subsection{Comment on the numerical results and computation times taken for different $N$ values}
 
 \hspace{23mm} When running minimum is $\$0.97$: \\
 \textbf{Penghao please fill this up}
@@ -237,6 +214,29 @@ The option values for the running minimum of $\$0.57$ is always $\$0.38$, becaus
 		\hline 0.97 & 400 & 5.4639 & 291.35 \\
 		\hline 0.97 & 450 & 5.4487 & 34.326 \\
 		\hline 0.97 & 500 & 5.4487 & 34.326 \\
+		\hline
+	\end{tabular}
+\end{center}
+
+\subsection{Comment on the numerical results obtained from lower running minimum value}
+The option values for the running minimum of $\$0.57$ is always $\$0.38$, because the current underlying asset price $\$1$ is too high that it is highly improbable for the future underlier price to be lower than the running minimum, and it is more beneficial to exercise the option immediately at the current time.
+
+\hspace{23mm} When running minimum is $\$0.57$: \\
+\textbf{Penghao please fill this up}
+\begin{center}
+	\begin{tabular}{| c | c | c | c |}
+		\hline running minimum(\$) & $N$ & Option price & Time taken in $\mu s$\\
+		[0.5ex]
+		\hline 0.57 & 50 & 5.36 & 0.61176 \\
+		\hline 0.57 & 100 & 5.4181 & 4.0884 \\
+		\hline 0.57 & 150 & 5.4487 & 34.326 \\
+		\hline 0.57 & 200 & 5.4487 & 34.326 \\
+		\hline 0.57 & 250 & 5.4487 & 34.326 \\
+		\hline 0.57 & 300 & 5.4487 & 34.326 \\
+		\hline 0.57 & 350 & 5.4487 & 34.326 \\
+		\hline 0.57 & 400 & 5.4639 & 291.35 \\
+		\hline 0.57 & 450 & 5.4487 & 34.326 \\
+		\hline 0.57 & 500 & 5.4487 & 34.326 \\
 		\hline
 	\end{tabular}
 \end{center}
